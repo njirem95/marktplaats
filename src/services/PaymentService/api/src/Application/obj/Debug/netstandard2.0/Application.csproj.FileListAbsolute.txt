@@ -1,0 +1,9 @@
+C:\Users\Script\Desktop\marktplaats\src\services\PaymentService\api\src\Application\bin\Debug\netstandard2.0\Application.deps.json
+C:\Users\Script\Desktop\marktplaats\src\services\PaymentService\api\src\Application\bin\Debug\netstandard2.0\Application.dll
+C:\Users\Script\Desktop\marktplaats\src\services\PaymentService\api\src\Application\bin\Debug\netstandard2.0\Application.pdb
+C:\Users\Script\Desktop\marktplaats\src\services\PaymentService\api\src\Application\obj\Debug\netstandard2.0\Application.csprojAssemblyReference.cache
+C:\Users\Script\Desktop\marktplaats\src\services\PaymentService\api\src\Application\obj\Debug\netstandard2.0\Application.csproj.CoreCompileInputs.cache
+C:\Users\Script\Desktop\marktplaats\src\services\PaymentService\api\src\Application\obj\Debug\netstandard2.0\Application.AssemblyInfoInputs.cache
+C:\Users\Script\Desktop\marktplaats\src\services\PaymentService\api\src\Application\obj\Debug\netstandard2.0\Application.AssemblyInfo.cs
+C:\Users\Script\Desktop\marktplaats\src\services\PaymentService\api\src\Application\obj\Debug\netstandard2.0\Application.dll
+C:\Users\Script\Desktop\marktplaats\src\services\PaymentService\api\src\Application\obj\Debug\netstandard2.0\Application.pdb

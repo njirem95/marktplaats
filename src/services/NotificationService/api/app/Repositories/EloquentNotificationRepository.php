@@ -8,7 +8,6 @@ final class EloquentNotificationRepository implements NotificationRepositoryInte
 {
 	public function add(Notification $notification) : void
 	{
-		// TODO Save data
 	}
 
 	public function all() : \Illuminate\Support\Collection
