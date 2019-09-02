@@ -2,8 +2,8 @@ using System;
 
 namespace PaymentService.Domain.Entities
 {
-    public interface IAggregateRoot
+    public class BaseEntity
     {
-
+        public int Id { get; set; }
     }
 }

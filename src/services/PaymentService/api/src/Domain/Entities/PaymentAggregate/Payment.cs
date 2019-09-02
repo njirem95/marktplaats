@@ -1,8 +1,9 @@
 using System;
+using PaymentService.Domain.Entities;
 
-namespace Domain.Entities.PaymentAggregate
+namespace PaymentService.Domain.Entities.PaymentAggregate
 {
-    public class Payment : IAggregateRoot
+    public class Payment : BaseEntity, IAggregateRoot
     {
         public Payment()
         {
