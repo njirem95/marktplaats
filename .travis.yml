@@ -7,6 +7,15 @@ services:
 
 matrix:
   include:
+    - language: php
+      php: 
+        - '7.2'
+        - nightly
+      before_script:
+        - cd src/services/NotificationService/api/
+        - composer install
+      script:
+        - vendor/bin/phpunit 
     - language: csharp
       mono: none
       dotnet: 2.2
