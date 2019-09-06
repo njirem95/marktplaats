@@ -8,6 +8,7 @@ namespace PaymentService.Application.Payment.Commands.VerifyPayment
         public VerifyPaymentValidator()
         {
             // TODO Add RuleFor statements.
+            
         }
     }
 }

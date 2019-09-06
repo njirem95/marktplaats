@@ -11,6 +11,7 @@ namespace web.Controllers
     {
         public IActionResult Index()
         {
+            // Get all advertisements from the advertisement service.
             return View();
         }
     }

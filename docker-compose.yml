@@ -1,7 +1,20 @@
 version: '3.5'
 
 services:
+    payment_service:
+      build:
+        context: ./src/services/PaymentService
+        dockerfile: Dockerfile
+        networking: 
+          - shared_network
+
     notification_service:
       build:
-          context: ./src/services/NotificationService
-          dockerfile: Dockerfile
+        context: ./src/services/NotificationService
+        dockerfile: Dockerfile
+        networks:
+          - shared_network
+          
+  networks:
+    shared_network:
+      name: shared_network 

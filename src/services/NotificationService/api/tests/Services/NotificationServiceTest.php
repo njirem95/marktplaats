@@ -21,7 +21,7 @@ class NotificationServiceTest extends TestCase
 
     public function tearDown(): void
     {
-        \Mockery::close();
+       \Mockery::close();
     }
 
     public function testGetNotifications()
@@ -44,7 +44,7 @@ class NotificationServiceTest extends TestCase
             ->andReturn($emptyCollection);
 
         $this->expectException(NotificationsNotFoundException::class);
-        $result = $this->notificationService->getNotifications();    
+        $result = $this->notificationService->getNotifications();  
     }
 
 }
