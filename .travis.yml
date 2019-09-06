@@ -11,7 +11,7 @@ matrix:
       mono: none
       dotnet: 2.2
       before_script:
-        - cd src/services/PaymentService/api/
+        - cd src/services/PaymentService/api/src
       script:
         - dotnet restore
         - dotnet build
