@@ -1,0 +1,11 @@
+{
+    "name": "chat-desktopapp",
+    "version": "0.0.1",
+    "main": "main.js",
+    "devDependencies": {
+        "electron": "^6.0.8"
+    },
+    "scripts": {
+        "start": "electron ."
+    }
+}
