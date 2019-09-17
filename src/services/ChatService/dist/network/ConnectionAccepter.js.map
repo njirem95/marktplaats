@@ -1,0 +1,1 @@
+{"version":3,"file":"ConnectionAccepter.js","sourceRoot":"","sources":["../../src/network/ConnectionAccepter.ts"],"names":[],"mappings":";;AAKA,MAAa,0BAA0B;IAGnC,YAAY,MAAwB;QAChC,IAAI,CAAC,OAAO,GAAG,MAAM,CAAC;IAC1B,CAAC;IAED,MAAM;QACF,gEAAgE;IACpE,CAAC;CACJ;AAVD,gEAUC"}

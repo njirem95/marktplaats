@@ -14,16 +14,18 @@ io.on('connection', function (socket) {
 
     socket.on('set nickname', function (nickname) {
         if (nickname.length < 1) {
-            // invalid nickname; send failure response back to client.
             return;
         }
 
-        // use nickname thingy 
         socket.nickname = nickname;
         console.log('created nickname', socket.nickname);
     });
 
     socket.on(chatMessage, function (message) {
+        if (message.trim().length < 3) {
+            return;
+        }
+
         let author = "Anonymous";
         if (socket.nickname !== undefined) {
             author = socket.nickname;
