@@ -11,14 +11,12 @@ export class ChatServerHandler implements ServerHandler {
         private _messages: Map<string, MessageHandler>) { }   
 
     public handle(): void {
-        const messages: Map<string, MessageHandler> = this._messages; // why?
-
-        this._server.on('connection', function(session: socketio.Socket) {
+        this._server.on('connection', (session: socketio.Socket) => {
             console.log("Handling incoming connection...");
 
-            messages.forEach(function (messageHandler: MessageHandler, value: string) {
+            this._messages.forEach(function (message: MessageHandler, value: string) {
                 session.on(value, function(data) {
-                    return messageHandler.handle(data);
+                    return message.handle(data);
                 });
             });
         });

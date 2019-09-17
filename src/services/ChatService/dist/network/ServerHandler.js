@@ -6,12 +6,11 @@ class ChatServerHandler {
         this._messages = _messages;
     }
     handle() {
-        const messages = this._messages; // why?
-        this._server.on('connection', function (session) {
+        this._server.on('connection', (session) => {
             console.log("Handling incoming connection...");
-            messages.forEach(function (messageHandler, value) {
+            this._messages.forEach(function (message, value) {
                 session.on(value, function (data) {
-                    return messageHandler.handle(data);
+                    return message.handle(data);
                 });
             });
         });
