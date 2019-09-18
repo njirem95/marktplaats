@@ -9,7 +9,7 @@ export class ChatServerHandler implements Connection {
 
     public handle(): void {
         this._server.on('connection', (session: socketio.Socket) => {
-            console.log(`Handling incoming connection for ${session.handshake.address}`);
+            console.log(`Incoming connection from ${session.handshake.address}`);
 
             this._events.forEach(function (event: Event, value: string) {
                 session.on(value, function(data) {
