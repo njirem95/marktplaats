@@ -1,15 +1,16 @@
 import * as socketio from "socket.io";
-import { ServerHandler, ChatServerHandler } from "./network/ServerHandler";
-import { OnDisconnectHandler } from "./message/OnDisconnect";
-import { ChatMessageHandler } from "./message/ChatMessage";
-import { MessageHandler } from "./message/Message";
+import { ChatServerHandler } from "./network/ChatServerHandler";
+import { DisconnectEvent } from "./events/DisconnectEvent";
+import { ChatMessageEvent } from "./events/ChatMessageEvent";
+import { Event } from "./events/Event";
+import { Connection } from "./network/Connection";
 
 const io: socketio.Server = socketio.listen(1337);
 
-const messages: Map<string, MessageHandler> = new Map<string, MessageHandler>();
-messages.set("disconnect", new OnDisconnectHandler);
-messages.set("chat message", new ChatMessageHandler);
+const events: Map<string, Event> = new Map<string, Event>();
+events.set("disconnect", new DisconnectEvent(io));
+events.set("chat message", new ChatMessageEvent(io));
 
-const handler: ServerHandler = new ChatServerHandler(io, messages);
+const handler: Connection = new ChatServerHandler(io, events);
 
 handler.handle();

@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const socketio = require("socket.io");
-const ServerHandler_1 = require("./network/ServerHandler");
-const OnDisconnect_1 = require("./message/OnDisconnect");
-const ChatMessage_1 = require("./message/ChatMessage");
+const ChatServerHandler_1 = require("./network/ChatServerHandler");
+const DisconnectEvent_1 = require("./events/DisconnectEvent");
+const ChatMessageEvent_1 = require("./events/ChatMessageEvent");
 const io = socketio.listen(1337);
-const messages = new Map();
-messages.set("disconnect", new OnDisconnect_1.OnDisconnectHandler);
-messages.set("chat message", new ChatMessage_1.ChatMessageHandler);
-const handler = new ServerHandler_1.ChatServerHandler(io, messages);
+const events = new Map();
+events.set("disconnect", new DisconnectEvent_1.DisconnectEvent(io));
+events.set("chat message", new ChatMessageEvent_1.ChatMessageEvent(io));
+const handler = new ChatServerHandler_1.ChatServerHandler(io, events);
 handler.handle();
 //# sourceMappingURL=server.js.map

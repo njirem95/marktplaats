@@ -1,0 +1,1 @@
+{"version":3,"file":"ChatMessageEvent.js","sourceRoot":"","sources":["../../../src/events/chat/ChatMessageEvent.ts"],"names":[],"mappings":";;AAGA,MAAa,gBAAgB;IAClB,MAAM,CAAC,OAAwB,EAAE,IAAU;QAC9C,gBAAgB;QAChB,IAAI,IAAI,CAAC,MAAM,IAAI,CAAC,EAAE;YAClB,OAAO,CAAC,GAAG,CAAC,iBAAiB,CAAC,CAAC;YAC/B,OAAO;SACV;QACD,OAAO,CAAC,GAAG,CAAC,IAAI,CAAC,CAAC;IACtB,CAAC;CACJ;AATD,4CASC"}

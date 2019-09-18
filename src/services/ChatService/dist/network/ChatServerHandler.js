@@ -1,18 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class ChatServerHandler {
-    constructor(_server, _messages) {
+    constructor(_server, _events) {
         this._server = _server;
-        this._messages = _messages;
+        this._events = _events;
     }
     handle() {
-        const messages = this._messages; // why?
-        this._server.on('connection', function (session) {
-            console.log("Handling incoming connection...");
-            messages.forEach(function (message, value) {
-                session.on(value, function (out) {
-                    // TODO Resolve outgoing message by using the OutgoingMessageResolver class.
-                    return message.handle(out);
+        this._server.on('connection', (session) => {
+            console.log(`Handling incoming connection for ${session.handshake.address}`);
+            this._events.forEach(function (event, value) {
+                session.on(value, function (data) {
+                    event.handle(session, data);
                 });
             });
         });
