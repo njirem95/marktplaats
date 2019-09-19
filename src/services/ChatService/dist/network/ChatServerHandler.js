@@ -7,7 +7,7 @@ class ChatServerHandler {
     }
     handle() {
         this._server.on('connection', (session) => {
-            console.log(`Handling incoming connection for ${session.handshake.address}`);
+            console.log(`Incoming connection from ${session.handshake.address}`);
             this._events.forEach(function (event, value) {
                 session.on(value, function (data) {
                     event.handle(session, data);

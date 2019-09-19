@@ -18,7 +18,7 @@ export class ChatMessageEvent implements Event {
         if (data.length == 0) return;
 
         if (this.isChatCommand(data)) {
-            // TODO Handle chat command.
+            session.emit('chat message', 'unrecognized command');
             return;
         }
 

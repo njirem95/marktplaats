@@ -4,10 +4,35 @@ class ChatMessageEvent {
     constructor(_socket) {
         this._socket = _socket;
     }
+    /**
+     * Handles the incoming chat message.
+     *
+     * It also checks if data is a chat command instead of a regular
+     * chat message.
+     *
+     * @param session
+     * @param data
+     */
     handle(session, data) {
-        // TODO Validate data
+        // TODO Validate data properly.
+        if (data.length == 0)
+            return;
+        if (this.isChatCommand(data)) {
+            session.emit('chat message', 'unrecognized command');
+            return;
+        }
         // TODO Pass to an outbound handler instead of emitting directly using _socket.
         this._socket.emit('chat message', data);
+    }
+    /**
+     * Checks if message is a chat command.
+     *
+     * message is a chat command if it  with a "!".
+     *
+     * @param message the incoming message
+     */
+    isChatCommand(message) {
+        return message.startsWith("!");
     }
 }
 exports.ChatMessageEvent = ChatMessageEvent;

@@ -5,7 +5,7 @@ class DisconnectEvent {
         this._server = _server;
     }
     handle(session, data) {
-        this._server.emit('chat message', `${session.handshake.address} with id ${session.id} left the server.`);
+        this._server.emit('chat message', `Someone left the server.`);
     }
 }
 exports.DisconnectEvent = DisconnectEvent;
