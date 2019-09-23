@@ -7,6 +7,8 @@ import { Event } from "./events/Event";
 import { Connection } from "./network/Connection";
 import { ChatMessagePublisher } from "./publishers/ChatMessagePublisher";
 import { Publisher } from "./publishers/Publisher";
+import { Receiver } from "./receivers/Receiver";
+import { ChatMessageReceiver } from "./receivers/ChatMessageReceiver";
 
 const exchangeName: string = 'chatservice';
 
@@ -17,7 +19,7 @@ events.set("disconnect", new DisconnectEvent(io));
 
 const handler: Connection = new ChatServerHandler(io, events);
 
-amqplib.connect('amqp://merijn:verysecure@127.0.0.1', function (error: Error, connection: any) {
+amqplib.connect('amqp://merijn:verysecure@127.0.0.1', function (error: Error, connection: amqplib.Connection) {
     if (error) {
         throw error;
     }
@@ -33,6 +35,18 @@ amqplib.connect('amqp://merijn:verysecure@127.0.0.1', function (error: Error, co
 
         const chatMessagePublisher: Publisher = new ChatMessagePublisher(channel);
         events.set("chat message", new ChatMessageEvent(chatMessagePublisher));
+
+        // Start chat message receiver
+        const chatMessageReceiver: Receiver = new ChatMessageReceiver(io);
+        channel.assertQueue("messages", { durable: true}, function (error2, _ok) {
+            if (error2) {
+                throw error2;
+            }
+
+            channel.bindQueue("messages", exchangeName, '');
+
+            channel.consume("messages", chatMessageReceiver.handle, { noAck: true });
+        });
     });
 });
 

@@ -1,3 +1,5 @@
+import * as amqplib from "amqplib";
+
 export interface Receiver {
-    handle(): void;
+    handle(msg: amqplib.Message): void;
 }
