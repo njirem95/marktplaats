@@ -1,0 +1,1 @@
+{"version":3,"file":"MessagePublisher.js","sourceRoot":"","sources":["../../src/publishers/MessagePublisher.ts"],"names":[],"mappings":";;AAEA,MAAa,oBAAoB;IAC7B,YAAoB,KAAyB;QAAzB,UAAK,GAAL,KAAK,CAAoB;IAAI,CAAC;IAE3C,OAAO;QACV,IAAI,CAAC,KAAK;YACd,AADe,JAAA,CAAA;IACf,CAAC;CACJ;AAND,oDAMC"}

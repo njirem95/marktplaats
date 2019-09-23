@@ -2,27 +2,11 @@ version: '3.5'
 
 services:
   chatservice:
-    depends_on:
-      - redis
-    build:
+    build: 
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - ./:/usr/src/app
     ports:
       - 1337:1337
     command: npm run watch
-    deploy:
-      mode: replicated
-      replicas: 3
-    networks:
-      - chat_network
-
-  redis:
-    image: redis:latest
-    networks:
-      - chat_network
-
-networks: 
-  chat_network:
-    name: chat_network
+    volumes:
+      - ./:/usr/src/app

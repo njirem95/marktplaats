@@ -10,10 +10,12 @@
         "test": "mocha -r ts-node/register src/**/*.spec.ts"
     },
     "dependencies": {
+        "@types/amqplib": "^0.5.13",
         "@types/express": "^4.17.1",
         "@types/mongodb": "^3.3.1",
         "@types/socket.io": "^2.1.2",
         "@types/socket.io-redis": "^1.0.25",
+        "amqplib": "^0.5.5",
         "concurrently": "^4.1.2",
         "express": "^4.17.1",
         "mongodb": "^3.3.2",

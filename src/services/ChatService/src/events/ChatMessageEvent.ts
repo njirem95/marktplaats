@@ -1,8 +1,9 @@
 import { Event } from "./Event";
 import * as socketio from "socket.io";
+import { Publisher } from "../publishers/Publisher";
 
 export class ChatMessageEvent implements Event {
-    constructor(private _socket: socketio.Server) { }
+    constructor(private _publisher: Publisher) { }
 
     /**
      * Handles the incoming chat message.
@@ -23,7 +24,7 @@ export class ChatMessageEvent implements Event {
         }
 
         // TODO Pass to an outbound handler instead of emitting directly using _socket.
-        this._socket.emit('chat message', data);
+        this._publisher.publish(data);
     }
 
     /**

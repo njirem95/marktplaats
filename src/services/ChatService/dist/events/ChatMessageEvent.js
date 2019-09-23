@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class ChatMessageEvent {
-    constructor(_socket) {
-        this._socket = _socket;
+    constructor(_publisher) {
+        this._publisher = _publisher;
     }
     /**
      * Handles the incoming chat message.
@@ -22,7 +22,7 @@ class ChatMessageEvent {
             return;
         }
         // TODO Pass to an outbound handler instead of emitting directly using _socket.
-        this._socket.emit('chat message', data);
+        this._publisher.publish(data);
     }
     /**
      * Checks if message is a chat command.
