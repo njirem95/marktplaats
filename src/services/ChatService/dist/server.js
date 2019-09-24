@@ -12,7 +12,7 @@ const io = socketio.listen(1337);
 const events = new Map();
 events.set("disconnect", new DisconnectEvent_1.DisconnectEvent(io));
 const handler = new ChatServerHandler_1.ChatServerHandler(io, events);
-amqplib.connect('amqp://merijn:verysecure@127.0.0.1', function (error, connection) {
+amqplib.connect('amqp://merijn:verysecure@192.168.178.88', function (error, connection) {
     if (error) {
         throw error;
     }
@@ -25,14 +25,13 @@ amqplib.connect('amqp://merijn:verysecure@127.0.0.1', function (error, connectio
         });
         const chatMessagePublisher = new ChatMessagePublisher_1.ChatMessagePublisher(channel);
         events.set("chat message", new ChatMessageEvent_1.ChatMessageEvent(chatMessagePublisher));
-        // Start chat message receiver
         const chatMessageReceiver = new ChatMessageReceiver_1.ChatMessageReceiver(io);
-        channel.assertQueue("messages", { durable: true }, function (error2, _ok) {
+        channel.assertQueue("", { durable: false }, function (error2, _ok) {
             if (error2) {
                 throw error2;
             }
-            channel.bindQueue("messages", exchangeName, '');
-            channel.consume("messages", chatMessageReceiver.handle, { noAck: true });
+            channel.bindQueue("", exchangeName, '');
+            channel.consume("", (msg) => chatMessageReceiver.handle(msg), { noAck: true });
         });
     });
 });

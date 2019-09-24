@@ -5,9 +5,8 @@ class ChatMessageReceiver {
         this._server = _server;
     }
     handle(msg) {
-        // Push the incoming message to the receiving socket server.
-        console.log(`Got message: ${msg.content}`);
-        console.log(this._server);
+        const content = msg.content.toString();
+        this._server.emit('chat message', content);
     }
 }
 exports.ChatMessageReceiver = ChatMessageReceiver;

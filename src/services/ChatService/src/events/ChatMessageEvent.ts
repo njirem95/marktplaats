@@ -15,7 +15,6 @@ export class ChatMessageEvent implements Event {
      * @param data 
      */
     public handle(session: socketio.Socket, data?: any): void {
-        // TODO Validate data properly.
         if (data.length == 0) return;
 
         if (this.isChatCommand(data)) {
@@ -23,7 +22,6 @@ export class ChatMessageEvent implements Event {
             return;
         }
 
-        // TODO Pass to an outbound handler instead of emitting directly using _socket.
         this._publisher.publish(data);
     }
 

@@ -2,11 +2,10 @@ version: '3.5'
 
 services:
   chatservice:
-    build: 
-      context: .
-      dockerfile: Dockerfile
+    image: localhost:5000/chatservice
+    build: .
     ports:
       - 1337:1337
     command: npm run watch
-    volumes:
-      - ./:/usr/src/app
+    deploy:
+      replicas: 3

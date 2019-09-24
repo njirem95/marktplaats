@@ -6,8 +6,8 @@ export class ChatMessageReceiver implements Receiver {
     constructor(private _server: socketio.Server) {}
     
     public handle(msg: amqplib.Message): void {
-        // Push the incoming message to the receiving socket server.
-        console.log(`Got message: ${msg.content}`);
-        console.log(this._server);
+        const content: string = msg.content.toString();
+
+        this._server.emit('chat message', content);
     }
 }

@@ -14,14 +14,12 @@ class ChatMessageEvent {
      * @param data
      */
     handle(session, data) {
-        // TODO Validate data properly.
         if (data.length == 0)
             return;
         if (this.isChatCommand(data)) {
             session.emit('chat message', 'unrecognized command');
             return;
         }
-        // TODO Pass to an outbound handler instead of emitting directly using _socket.
         this._publisher.publish(data);
     }
     /**
