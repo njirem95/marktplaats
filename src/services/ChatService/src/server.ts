@@ -9,13 +9,15 @@ import { ChatMessagePublisher } from "./publishers/ChatMessagePublisher";
 import { Publisher } from "./publishers/Publisher";
 import { Receiver } from "./receivers/Receiver";
 import { ChatMessageReceiver } from "./receivers/ChatMessageReceiver";
+import { MessageHandler } from "./receivers/MessageHandler";
+import { DisconnectReceiver } from "./receivers/DisconnectReceiver";
+import { DisconnectPublisher } from "./publishers/DisconnectPublisher";
 
 const exchangeName: string = 'chatservice';
 
 const io: socketio.Server = socketio.listen(1337);
 
 const events: Map<string, Event> = new Map<string, Event>();
-events.set("disconnect", new DisconnectEvent(io));
 
 const handler: Connection = new ChatServerHandler(io, events);
 
@@ -36,15 +38,24 @@ amqplib.connect('amqp://merijn:verysecure@192.168.178.88', function (error: Erro
         const chatMessagePublisher: Publisher = new ChatMessagePublisher(channel);
         events.set("chat message", new ChatMessageEvent(chatMessagePublisher));
 
-        const chatMessageReceiver: Receiver = new ChatMessageReceiver(io);
+
+        const disconnectPublisher: Publisher = new DisconnectPublisher(channel);
+        events.set("disconnect", new DisconnectEvent(disconnectPublisher));
+
         channel.assertQueue("", { durable: false}, function (error2, _ok) {
             if (error2) {
                 throw error2;
             }
 
+            const receivers: Map<String, Receiver> = new Map<String, Receiver>();
+            receivers.set("chat message", new ChatMessageReceiver(io));
+            receivers.set("disconnect", new DisconnectReceiver(io));
+            
+            const messageHandler: MessageHandler = new MessageHandler(receivers);
+
             channel.bindQueue("", exchangeName, '');
 
-            channel.consume("", (msg: amqplib.Message) => chatMessageReceiver.handle(msg), { noAck: true });
+            channel.consume("", (msg: amqplib.Message) => messageHandler.handle(msg), { noAck: true });
         });
     });
 });

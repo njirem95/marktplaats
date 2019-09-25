@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class DisconnectEvent {
-    constructor(_server) {
-        this._server = _server;
+    constructor(_disconnectPubliseher) {
+        this._disconnectPubliseher = _disconnectPubliseher;
     }
     handle(session, data) {
-        this._server.emit('chat message', `Someone left the server.`);
+        this._disconnectPubliseher.publish(data);
     }
 }
 exports.DisconnectEvent = DisconnectEvent;

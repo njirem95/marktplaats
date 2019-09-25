@@ -1,3 +1,3 @@
 export interface Publisher {
-    publish(data: any): void;
+    publish(data?: any): void;
 }

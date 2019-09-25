@@ -5,7 +5,7 @@ class ChatMessagePublisher {
         this._amqp = _amqp;
     }
     publish(message) {
-        this._amqp.publish('chatservice', '', Buffer.from(message));
+        this._amqp.publish('chatservice', '', Buffer.from(message), { "headers": { "messageType": "chat message" } });
         console.log(`Sent ${message} to RabbitMQ`);
     }
 }
